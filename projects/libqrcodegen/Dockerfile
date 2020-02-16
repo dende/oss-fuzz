@@ -17,6 +17,7 @@
 FROM gcr.io/oss-fuzz-base/base-builder
 MAINTAINER me@nayuki.io
 RUN apt-get update && apt-get install -y make autoconf automake libtool
-RUN git clone https://github.com/dende/QR-Code-generator.git   libqrcodegen
+RUN git clone https://github.com/nayuki/QR-Code-generator.git libqrcodegen
 WORKDIR libqrcodegen
 COPY build.sh $SRC/
+COPY *fuzzer.cpp $SRC/

@@ -17,4 +17,18 @@
 
 # build project
 # e.g.
-$SRC/libqrcodegen/c/fuzzing.sh
+pushd c
+make -j
+popd
+pushd cpp
+make -j
+popd
+
+$CXX $CXXFLAGS -std=c++11 -Ic/ \
+    $SRC/encode_binary_c_fuzzer.cpp -o $OUT/encode_binary_c_fuzzer \
+    $LIB_FUZZING_ENGINE -Lc -lqrcodegen
+
+$CXX $CXXFLAGS -std=c++11 -Icpp/ \
+    $SRC/encode_binary_cpp_fuzzer.cpp -o $OUT/encode_binary_cpp_fuzzer \
+    $LIB_FUZZING_ENGINE -Lcpp -lqrcodegen
+
