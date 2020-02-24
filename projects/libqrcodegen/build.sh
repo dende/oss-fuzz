@@ -18,10 +18,10 @@
 # build project
 # e.g.
 pushd c
-make -j
+make -j libqrcodegen.a
 popd
 pushd cpp
-make -j
+make -j libqrcodegen.a
 popd
 
 $CXX $CXXFLAGS -std=c++11 -Ic/ \
